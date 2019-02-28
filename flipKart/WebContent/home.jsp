@@ -51,8 +51,8 @@
         <li class="active"><a href="#">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.jsp"><span class="glyphicon glyphicon-user"></span>your account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li><a href="login.jsp"><span class="glyphicon glyphicon-user"></span><%=((User)request.getSession().getAttribute("currentUser")).getUserName() %></a></li>
+        <li><a href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
       </ul>
     </div>
   </div>
@@ -92,14 +92,14 @@
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:300px; height:200px" alt="Image"></div>
         <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:300px; height:200px" alt="Image"></div>
         <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
       </div>
     </div>

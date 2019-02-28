@@ -1,9 +1,24 @@
 package com.pojo;
 
 public abstract class Product {
-	private static String productId;
+	private String productId;
 	private double productPrice;
+	private String name;
+	private String model;
 	
+	public String getModel() {
+		return model;
+	}
+	
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	public String getProductId() {
 		return productId;

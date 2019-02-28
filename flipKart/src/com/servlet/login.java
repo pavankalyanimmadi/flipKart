@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pojo.Mobile;
+import com.pojo.Product;
+import com.pojo.User;
 import com.service.FlipkartService;
 
 /**
- * Servlet implementation class GetMobile
+ * Servlet implementation class login
  */
-@WebServlet("/GetMobile")
-public class GetMobile extends HttpServlet {
+@WebServlet("/loginServlet")
+public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetMobile() {
+    public login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,31 +34,35 @@ public class GetMobile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String productId=request.getParameter("productId");
-		FlipkartService service=new FlipkartService();
-		Mobile mobile=service.getMobile(productId);
-		System.out.println(mobile.getName());
-		request.setAttribute("mobile",mobile);
-		RequestDispatcher rd=request.getRequestDispatcher("productDetails.jsp");
-		rd.forward(request,response);
-	
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String productId=request.getParameter("productId");
+		String userId=request.getParameter("userId");
+		String password=request.getParameter("password");
+		
+		System.out.println(userId+" -----"+password);
 		FlipkartService service=new FlipkartService();
-		Mobile mobile=service.getMobile(productId);
-		request.getSession().setAttribute("currentProduct",mobile);
-		System.out.println(mobile.getName());
-		request.setAttribute("mobile",mobile);
-		RequestDispatcher rd=request.getRequestDispatcher("productDetails.jsp");
-		rd.forward(request,response);
-	
+		User currentUser=service.getLogin(userId, password);
+		System.out.println(currentUser.getUserName());
+		if(currentUser.getUserName()!=null) {
+			request.getSession().setAttribute("currentUser",currentUser);
+			ArrayList<Product> products=new ArrayList<>();
+			request.getSession().setAttribute("cart",products);
+			RequestDispatcher rd=request.getRequestDispatcher("home.jsp");
+			rd.forward(request,response);
+			
 		}
+		else {
+			RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+			rd.forward(request,response);
+			
+		}
+		
+	}
 
 }

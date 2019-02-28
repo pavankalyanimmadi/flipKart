@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.pojo.Mobile"%>
+    pageEncoding="ISO-8859-1" import="java.util.*" import="com.pojo.Product"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,41 +26,33 @@
       background-color: #f2f2f2;
       padding: 25px;
     }
+    
+    
   </style>
 </head>
 <body>
-<% Mobile mobile=(Mobile)request.getAttribute("mobile"); %>
- <div class="container-fluid">
+<div class="panel-heading container text-center"><h2>Products of your cart</h2></div>
+<% ArrayList<Product> cart=new ArrayList<>();
+   cart=(ArrayList<Product>)request.getSession().getAttribute("cart");
+   for(Product p:cart){
+%>
+
+<div class="container-fluid">
    <div class="col-sm-4 container-fluid">
-      <div class="panel-heading"><%=mobile.getName() %>  <%=mobile.getModel() %></div>
-        <div class="panel-body"><img src="images/<%=mobile.getProductId() %>.jpg?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+      <div class="panel-heading"><%=p.getName() %>  <%=p.getModel() %></div>
+        <div class="panel-body"><img src="images/<%=p.getProductId() %>.jpg?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
    </div>
    <div class="container-fluid">
-    <div class="panel-heading"><h2>Product Details</h2></div>
-    <label>Mobile Brand</label>:<%=mobile.getName()%><br>
+   <br><br>
+    <label>Mobile Brand</label>:<%=p.getName()%><br>
      
-    <label>Model</label>:<%=mobile.getModel() %><br>
-    
-    <label>Ram</label>:<%=mobile.getRam() %>gb<br>
-    
-  
-    <label>Internal Storage</label>:<%=mobile.getInternalStorage() %>gb<br>
-  
-    
-  
-    <label>Size</label>:<%=mobile.getSize() %><br>
- 
-    
- 
-    <label>Price</label>:<%=mobile.getProductPrice()%><br>
-   
-    
-    <a href="addItemToCart?productId=<%=mobile.getProductId() %>">Add to cart</a>
-    
-    
-   </div>
+    <label>Model</label>:<%=p.getModel() %><br>
+    <label>Price</label>:<%=p.getProductPrice()%><br>
+  </div>
 
 </div>
+
+<%} %>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pojo.Mobile;
+import com.pojo.Product;
+import com.pojo.User;
 import com.service.FlipkartService;
 
 /**
- * Servlet implementation class GetMobile
+ * Servlet implementation class addItemToCart
  */
-@WebServlet("/GetMobile")
-public class GetMobile extends HttpServlet {
+@WebServlet("/addItemToCart")
+public class addItemToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetMobile() {
+    public addItemToCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,31 +34,35 @@ public class GetMobile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String productId=request.getParameter("productId");
 		FlipkartService service=new FlipkartService();
 		Mobile mobile=service.getMobile(productId);
-		System.out.println(mobile.getName());
-		request.setAttribute("mobile",mobile);
-		RequestDispatcher rd=request.getRequestDispatcher("productDetails.jsp");
-		rd.forward(request,response);
-	
+		if(((User)request.getSession().getAttribute("currentUser")).getUserName()!=null) {
+			ArrayList<Product> products=(ArrayList<Product>)request.getSession().getAttribute("cart");
+			products.add(mobile);
+			request.getSession().setAttribute("cart",products);
+			RequestDispatcher rs=request.getRequestDispatcher("cart.jsp");
+			rs.forward(request,response);
 		
-	}
+			
+		}
+		else {
+			request.setAttribute("currentProductId",productId);
+			RequestDispatcher rs=request.getRequestDispatcher("login.jsp");
+			rs.forward(request,response);
+			
+		}
+		
+		
+		
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String productId=request.getParameter("productId");
-		FlipkartService service=new FlipkartService();
-		Mobile mobile=service.getMobile(productId);
-		request.getSession().setAttribute("currentProduct",mobile);
-		System.out.println(mobile.getName());
-		request.setAttribute("mobile",mobile);
-		RequestDispatcher rd=request.getRequestDispatcher("productDetails.jsp");
-		rd.forward(request,response);
-	
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }

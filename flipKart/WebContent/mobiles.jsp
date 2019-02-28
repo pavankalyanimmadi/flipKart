@@ -18,7 +18,7 @@
     
     /* Remove the jumbotron's default bottom margin */ 
      .jumbotron {
-      margin-bottom: 0;
+      margin-bottom:0;
     }
    
     /* Add a gray background color and some padding to the footer */
@@ -29,6 +29,11 @@
   </style>
 </head>
 <body>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Mobile phones</h1>      
+  </div>
+</div>
 
 
 <div class="container ">    
@@ -36,7 +41,7 @@
     <div class="col-sm-4 container-fluid">
       <div class="panel panel-primary">
       <div class="panel-heading">Iphone X </div>
-        <div class="panel-body"><a href="GetMobile?productId=mob101"><img src="images/iphoneX.jpg?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></a></div>
+        <div class="panel-body"><a href="GetMobile?productId=mob101"><img src="images/mob101.jpg?text=IMAGE" class="img-responsive" style="width:300px; height:200px" alt="Image"></a></div>
         
         <div class="panel-footer">price:1000$</div>
       </div>
@@ -44,14 +49,14 @@
     <div class="col-sm-4"> 
       <div class="panel panel-danger">
        <div class="panel-heading">Micromax </div>
-        <div class="panel-body"><a href="GetMobile?productId=mob102"><img src="images/micromax.jpg?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></a></div>
+        <div class="panel-body"><a href="GetMobile?productId=mob102"><img src="images/mob102.jpg?text=IMAGE" class="img-responsive" style="width:300px; height:200px" alt="Image"></a></div>
         <div class="panel-footer">price:50$</div>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-success">
        <div class="panel-heading">samsung </div>
-      <div class="panel-body"><a href="GetMobile?productId=mob103"><img src="images/samsung.jpg?text=IMAGE" class="img-responsive" style="width:100%;hight:70%" alt="Image" ></a></div>
+      <div class="panel-body"><a href="GetMobile?productId=mob103"><img src="images/mob103.jpg?text=IMAGE" class="img-responsive" style="width:300px; height:200px" alt="Image" ></a></div>
         <div class="panel-footer">price:100$</div>
       </div>
     </div>

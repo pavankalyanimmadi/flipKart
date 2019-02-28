@@ -1,5 +1,6 @@
 package com.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -21,11 +22,22 @@ public class User {
 	public String getUserPassword() {
 		return userPassword;
 	}
+	public User() {
+		products=new ArrayList<Product>();
+	}
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 	public String getUserName() {
 		return userName;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userAddress="
+				+ userAddress + ", userMobileNumber=" + userMobileNumber + ", userEmail=" + userEmail + ", products="
+				+ products + "]";
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
